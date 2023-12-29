@@ -1,13 +1,10 @@
-function Boundary(x,y,w,h,a){
+function Circle(x,y,r){
   let options={
-    friction:0.3,
+    friction:0.1,
     restitution:0.6,
-    angle:a,
-    isStatic:true
   }
-  this.body=Bodies.rectangle(x,y,w,h,options);
-  this.w=w;
-  this.h=h;
+  this.body=Bodies.circle(x,y,r,options);
+  this.r=r;
   Composite.add(world,this.body)
 
 
@@ -20,9 +17,9 @@ function Boundary(x,y,w,h,a){
     rotate(angle)
     rectMode(CENTER)
     strokeWeight(1)
-    noStroke()
-    fill(0)
-    rect(0,0,this.w,this.h)
+    stroke(255)
+    fill(127)
+    ellipse(0,0,this.r*2)
     pop();
   }
 }

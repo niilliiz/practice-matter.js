@@ -12,27 +12,34 @@ let Engine = Matter.Engine,
 // create an engine
 let engine;
 let boxes=[];
+let circles=[];
 let world;
 let ground;
+let boundaries=[]
 
 function setup() {
     createCanvas(400, 400);
     engine=Engine.create();
     world=engine.world
-    Engine.run(engine);
-    ground=new Boundary(200,height,width,100)
-    Composite.add(world,[ground])
+    // Engine.run(engine);
+    boundaries.push(new Boundary(150,height,width,50,0.3))
+    boundaries.push(new Boundary(250,height/2,width*0.6,50,-0.3))
 }
 
 
-function mousePressed(){
-    boxes.push(new Box(mouseX,mouseY,random(10,40),random(10,40)))
+function mouseDragged(){
+    circles.push(new Circle(mouseX,mouseY,random(5,10)))
 }
 
 function draw() {
     background(51);
-    for(let i=0;i<boxes.length;i++){
-        boxes[i].show()
+    Engine.update(engine)
+
+    for(let i=0;i<circles.length;i++){
+        circles[i].show()
     }
-    ground.show()
+
+    for(let i=0;i<boundaries.length;i++){
+        boundaries[i].show()
+    }
 }
