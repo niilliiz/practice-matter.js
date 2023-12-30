@@ -1,3 +1,8 @@
+/* eslint-disable no-unused-vars,no-undef */
+// module aliases
+// noinspection JSUnresolvedReference
+
+
 function Boundary(x,y,w,h,a){
   let options={
     friction:0.3,

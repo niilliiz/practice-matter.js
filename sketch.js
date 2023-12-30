@@ -8,7 +8,9 @@ let Engine = Matter.Engine,
   Runner = Matter.Runner,
   Bodies = Matter.Bodies,
   Composite = Matter.Composite,
-  Constraint=Matter.Constraint;
+  Constraint=Matter.Constraint,
+  MouseConstraint=Matter.MouseConstraint,
+  Mouse=Matter.Mouse;
 
 // create an engine
 let engine;
@@ -16,12 +18,14 @@ let boxes=[];
 let particles=[];
 let world;
 let boundaries=[]
+let mouseConstraint;
 
 function setup() {
-    createCanvas(400, 400);
+   let canvas= createCanvas(400, 400);
     engine=Engine.create();
     world=engine.world
     // Engine.run(engine);
+
     boundaries.push(new Boundary(200,height,width,50,0))
 
     let prevP=null
@@ -30,13 +34,13 @@ function setup() {
 
         let fixed=false
 
-        let p=new Particle(x,50,5,Boolean(!prevP))
+        let p=new Particle(x,50,10,Boolean(!prevP))
 
        if(prevP){
            let constraintOptions={
                bodyA:p.body,
                bodyB:prevP.body,
-               length:20,
+               length:25,
                stiffness:0.4
            }
 
@@ -48,10 +52,16 @@ function setup() {
         prevP=p;
         particles.push(p)
     }
-    //
-    // let p2=new Particle(200,100,10)
-    //
 
+    let canvasMouse=Mouse.create(canvas.elt)
+    canvasMouse.pixelRatio=pixelDensity()
+    const mouseConstraintOptions={
+        mouse:canvasMouse,
+    }
+
+    mouseConstraint=MouseConstraint.create(engine,mouseConstraintOptions)
+
+    Composite.add(world,mouseConstraint)
 }
 
 
@@ -71,6 +81,17 @@ function draw() {
     for(let i=0;i<boundaries.length;i++){
         boundaries[i].show()
     }
+
+  if(mouseConstraint.body){
+    let clickedParticlePos=mouseConstraint.body.position
+    let offset=mouseConstraint.constraint.pointB
+    let mousePos=mouseConstraint.mouse.position
+
+
+    stroke(0,255,0)
+    line(clickedParticlePos.x+offset.x,clickedParticlePos.y+offset.y,mousePos.x,mousePos.y)
+  }
+
 
     // line(particles[0].body.position.x,particles[0].body.position.y,particles[1].body.position.x,particles[1].body.position.y)
 }

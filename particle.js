@@ -1,3 +1,8 @@
+/* eslint-disable no-unused-vars,no-undef */
+// module aliases
+// noinspection JSUnresolvedReference
+
+
 function Particle(x,y,r,fixed){
   let options={
     friction:0.1,
@@ -32,6 +37,7 @@ function Particle(x,y,r,fixed){
     stroke(255)
     fill(127)
     ellipse(0,0,this.r*2)
+    line(0,0,this.r,0)
     pop();
   }
 }
