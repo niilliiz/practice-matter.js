@@ -8,6 +8,17 @@ function Circle(x,y,r){
   Composite.add(world,this.body)
 
 
+
+  this.isOffScreen=function(){
+    let pos=this.body.position;
+    return pos.y > height + 100
+  }
+
+  this.removeFromWorld=function(){
+    Composite.remove(world,this.body)
+  }
+
+
   this.show=function(){
     let pos=this.body.position
     let angle=this.body.angle;

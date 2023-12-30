@@ -27,19 +27,30 @@ function setup() {
 }
 
 
-function mouseDragged(){
-    circles.push(new Circle(mouseX,mouseY,random(5,10)))
-}
+// function mouseDragged(){
+//     circles.push(new Circle(mouseX,mouseY,random(5,10)))
+// }
+
 
 function draw() {
     background(51);
+    circles.push(new Circle(300,50,random(5,10)))
     Engine.update(engine)
 
     for(let i=0;i<circles.length;i++){
         circles[i].show()
+
+        if(circles[i].isOffScreen()){
+            circles[i].removeFromWorld()
+            circles.splice(i,1)
+            i--;
+        }
     }
 
     for(let i=0;i<boundaries.length;i++){
         boundaries[i].show()
     }
+
+
+    console.log(circles.length,world.bodies.length);
 }
