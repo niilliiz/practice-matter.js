@@ -1,7 +1,8 @@
-function Particle(x,y,r){
+function Particle(x,y,r,fixed){
   let options={
     friction:0.1,
     restitution:0.6,
+    isStatic:fixed,
   }
   this.body=Bodies.circle(x,y,r,options);
   this.r=r;
