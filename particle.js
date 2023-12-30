@@ -1,4 +1,4 @@
-function Circle(x,y,r){
+function Particle(x,y,r){
   let options={
     friction:0.1,
     restitution:0.6,

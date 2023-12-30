@@ -12,9 +12,8 @@ let Engine = Matter.Engine,
 // create an engine
 let engine;
 let boxes=[];
-let circles=[];
+let particles=[];
 let world;
-let ground;
 let boundaries=[]
 
 function setup() {
@@ -23,26 +22,25 @@ function setup() {
     world=engine.world
     // Engine.run(engine);
     boundaries.push(new Boundary(150,height,width,50,0.3))
-    boundaries.push(new Boundary(250,height/2,width*0.6,50,-0.3))
 }
 
 
 // function mouseDragged(){
-//     circles.push(new Circle(mouseX,mouseY,random(5,10)))
+//     particles.push(new Circle(mouseX,mouseY,random(5,10)))
 // }
 
 
 function draw() {
     background(51);
-    circles.push(new Circle(300,50,random(5,10)))
+    particles.push(new Particle(300,50,random(5,10)))
     Engine.update(engine)
 
-    for(let i=0;i<circles.length;i++){
-        circles[i].show()
+    for(let i=0;i<particles.length;i++){
+        particles[i].show()
 
-        if(circles[i].isOffScreen()){
-            circles[i].removeFromWorld()
-            circles.splice(i,1)
+        if(particles[i].isOffScreen()){
+            particles[i].removeFromWorld()
+            particles.splice(i,1)
             i--;
         }
     }
@@ -50,7 +48,4 @@ function draw() {
     for(let i=0;i<boundaries.length;i++){
         boundaries[i].show()
     }
-
-
-    console.log(circles.length,world.bodies.length);
 }
