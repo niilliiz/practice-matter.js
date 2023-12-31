@@ -9,6 +9,7 @@ let {
   Constraint,
   MouseConstraint,
   Mouse,
+  World,
 } = Matter;
 
 let world;
@@ -20,6 +21,15 @@ let bird;
 let mouseConstraint;
 let slingShot;
 
+let dotImg;
+let boxImg;
+let skyBg;
+function preload() {
+  dotImg = loadImage("./images/dot.png");
+  boxImg = loadImage("./images/equals.png");
+  // dotImg=loadImage('./images/dot.png')
+}
+
 function setup() {
   const mouseCanvas = createCanvas(600, 400);
 
@@ -27,10 +37,10 @@ function setup() {
   world = engine.world;
 
   ground = new Ground(width / 2, height - 10, width, 20);
-  bird = new Bird(250, 300, 16);
+  bird = new Bird(150, 300, 25);
 
   for (let i = 0; i < 3; i++) {
-    boxes.push(new Box(450, 300 - i * 75, 50, 75));
+    boxes.push(new Box(450, 300 - i * 75, 100, 100));
   }
 
   const mouse = Mouse.create(mouseCanvas.elt);
@@ -50,7 +60,7 @@ function setup() {
 function keyPressed() {
   if (key === " ") {
     World.remove(world, bird.body);
-    bird = new Bird(250, 300, 16);
+    bird = new Bird(150, 300, 25);
     slingShot.attach(bird.body);
   }
 }
@@ -66,12 +76,12 @@ function draw() {
   Engine.update(engine);
 
   ground.show();
-  bird.show();
-  slingShot.show();
-
   for (let i = 0; i < boxes.length; i++) {
     boxes[i].show();
   }
+
+  slingShot.show();
+  bird.show();
 }
 
 //https://editor.p5js.org/codingtrain/sketches/UOR4nIcNS
