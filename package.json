@@ -1,7 +1,7 @@
 {
   "name": "matter",
   "version": "1.0.0",
-  "main": "sketch.js",
+  "main": "p5-playlist/sketch.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
