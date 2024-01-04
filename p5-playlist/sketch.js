@@ -3,27 +3,34 @@
 
 // noinspection JSUnresolvedReference
 
+let circleX = 100;
+let unit = 5;
+let r, g, b;
+
 function setup() {
   createCanvas(400, 400);
-  print("hello");
+  background(120, 250, 0);
+  r = random(255);
+  g = random(255);
+  b = random(255);
+}
+
+function mousePressed() {
+  // background(120, 250, 0);
+  r = random(255);
+  g = random(255);
+  b = random(255);
 }
 
 function draw() {
-  background(120, 250, 0);
-
-  // if (mouseIsPressed) {
-  //   fill(120, 5, 159);
-  // } else {
-  //   fill(11, 84, 107);
-  // }
-
-  const c = color(255, 204, 0);
-  fill(c);
-  ellipse(100, 100, 80, 80);
   noStroke();
-  rect(200, 100, 25, 75);
-
-  strokeWeight(8);
-  stroke(12, 159, 75);
-  line(250, 250, 80, 80);
+  fill(r, g, b, 0.5);
+  ellipse(mouseX, mouseY, 50, 50);
 }
+
+/*
+ * steps to make variables:
+ * 1- declare -> let circleX=null
+ * 2- initialize -> circleX=100;
+ * 3- use ->
+ * */
