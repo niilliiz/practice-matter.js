@@ -3,35 +3,35 @@
 
 // noinspection JSUnresolvedReference
 
-let circleX = 100;
-let unit = 5;
 let r, g, b;
 let color = 0;
+let unit = 2;
+
+let radius = 25;
+let circleX = 0;
 
 function setup() {
-  createCanvas(windowWidth, 400);
+  createCanvas(400, 400);
   background(120, 250, 0);
+  circleX = random(radius, width - radius);
 }
 
 function mousePressed() {
   // background(120, 250, 0);
-  r = random(255);
-  g = random(255);
-  b = random(255);
 }
 
 function draw() {
-  color = map(mouseX, 0, width, 0, 255);
-  // color = mouseX;
-  background(color);
+  background(3);
 
   noStroke();
   fill(125, 25, 62);
 
-  if (mouseX % 11 === 0) {
-    fill(250, 12, 98);
+  ellipse(circleX, 200, radius * 2, radius * 2);
+  if (circleX - radius <= 0 || circleX + radius >= width) {
+    unit = -unit;
   }
-  ellipse(mouseX, mouseY, 50, 50);
+
+  circleX += unit;
 }
 
 /*
