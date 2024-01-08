@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars,no-undef */
+
 // noinspection JSUnresolvedReference
 
 class Bird {

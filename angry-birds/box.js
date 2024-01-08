@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+
 // noinspection JSUnresolvedReference
 
 class Box {
