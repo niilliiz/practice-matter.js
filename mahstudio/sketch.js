@@ -27,6 +27,7 @@ let imagesList = null;
 let world;
 let engine;
 let shape;
+let ground;
 let shapeList = [];
 
 function preload() {
@@ -38,8 +39,10 @@ function setup() {
   engine = Engine.create();
   world = engine.world;
 
+  ground = new Ground(innerWidth / 2, innerHeight, innerWidth, 20);
+
   for (let i = 0; i < imagesList.length; i++) {
-    shapeList.push(new Shape(innerWidth / 2, innerHeight / 2, 25));
+    shapeList.push(new Shape(innerWidth / 2, innerHeight / 2, 45));
   }
 }
 

@@ -4,7 +4,7 @@
 function Shape(x, y, r) {
   const options = {};
   this.body = Matter.Bodies.circle(x, y, r, options);
-  Matter.Body.setMass(this.body, this.body * 1);
+  Matter.Body.setMass(this.body, this.body.mass * 1);
   Matter.Composite.add(world, this.body);
 
   this.r = r;
